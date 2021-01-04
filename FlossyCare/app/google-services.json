@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "877824595817",
+    "project_id": "flossy-care-d0430",
+    "storage_bucket": "flossy-care-d0430.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877824595817:android:b3e9a267067a2d40d20ff8",
+        "android_client_info": {
+          "package_name": "com.example.flossycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877824595817-974msuuf2cbamk5t365ss9pf17m73blc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYN4okeB8VvnhCe_3du7aM2gyp_wW4wMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877824595817-974msuuf2cbamk5t365ss9pf17m73blc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
