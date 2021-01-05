@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
     protected EditText etEmailUsername, etPassword;
     protected Button btnLogin;
-    protected TextView tvHere;
+    protected TextView tvHere,tvForgotPass;
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -34,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword=(EditText) findViewById(R.id.login_et_password);
         btnLogin= (Button) findViewById(R.id.login_btn);
         tvHere=(TextView) findViewById(R.id.login_tv_here);
+        tvForgotPass=(TextView) findViewById(R.id.login_tv_forgot_pass);
 
         //initialize firebaseAuth
         mFirebaseAuth=FirebaseAuth.getInstance();
@@ -50,41 +50,44 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=etEmailUsername.getText().toString().trim();
-                String password=etPassword.getText().toString().trim();
+              checkCredentialsAndSuccess();
+            }
+        });
 
-                if(email.isEmpty() || password.isEmpty()){
-                    //remind user to key in the data
-                    AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Please enter an email and password").setTitle("Warning").setPositiveButton("OK",null);
-
-                    AlertDialog dialog=builder.create();
-                    dialog.show();
-
-                }else  {
-                    mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                GotoMainActivity();
-                            }else{
-                                Toast.makeText(LoginActivity.this, task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        }
-                    });
-                }
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
 
+    }
 
+    private void checkCredentialsAndSuccess(){
+        String email=etEmailUsername.getText().toString().trim();
+        String password=etPassword.getText().toString().trim();
 
+        if (email.isEmpty() || !email.contains("@")){
+            etEmailUsername.setError("Must Be Valid Email Address");
+        }else if (password.isEmpty()){
+            etPassword.setError("Must Not Be Empty");
+        }else {
+            mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        GotoMainActivity();
+                    }else{
+                        Toast.makeText(LoginActivity.this, task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
 
-
+        }
 
     }
+
+
 
     private void GotoMainActivity(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

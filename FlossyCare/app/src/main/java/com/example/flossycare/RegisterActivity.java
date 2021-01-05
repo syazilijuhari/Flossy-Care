@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,44 +49,46 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String email=etEmail.getText().toString().trim();
-                String username=etUsername.getText().toString().trim();
-                String password=etPassword.getText().toString().trim();
-                String confirmpassword=etConfirmPassword.getText().toString().trim();
-
-                if (email.isEmpty() || password.isEmpty() || username.isEmpty() || confirmpassword.isEmpty()){
-                    AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("Please Complete all the necessary information").setTitle("").setPositiveButton("OK",null);
-
-                    AlertDialog dialog=builder.create();
-                    dialog.show();
-                }else{
-
-                    mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                GoToMainActivity();
-
-                            }else{
-
-                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-
-                            }
-
-                        }
-                    });
-
-                }
-
+                checkCredentialsAndSuccess();
             }
         });
 
 
     }
 
-   // private
+    private void checkCredentialsAndSuccess(){
+
+        String email=etEmail.getText().toString().trim();
+        String username=etUsername.getText().toString().trim();
+        String password=etPassword.getText().toString().trim();
+        String confirmpassword=etConfirmPassword.getText().toString().trim();
+        if(email.isEmpty() || !email.contains("@")){
+            etEmail.setError("Must Be Valid Email Address");
+        }else  if (username.isEmpty() || username.length()<5){
+            etUsername.setError("Must Not Be Empty & Must More Than 5 Characters");
+        }else  if (password.isEmpty() || password.length()<6){
+            etPassword.setError("Must Not Be Empty & Must More Than 6 Characters");
+        }else if (confirmpassword.isEmpty() || !confirmpassword.equals(password)){
+            etConfirmPassword.setError("Password Does Not Match");
+        }else {
+
+            mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        GoToMainActivity();
+
+                    }else{
+
+                        Toast.makeText(RegisterActivity.this, task.getException().getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
+            });
+
+        }
+    }
 
     private void GoToMainActivity(){
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -95,5 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
+
 
 }

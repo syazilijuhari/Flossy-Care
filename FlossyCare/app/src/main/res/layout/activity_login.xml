@@ -11,6 +11,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
+    <TextView
+        android:id="@+id/login_tv_forgot_pass"
+        android:layout_width="181dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/comfortaa"
+        android:gravity="right"
+        android:text="Forgot password?"
+        android:textColor="#0952DC"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
@@ -77,9 +92,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/comfortaa"
         android:text="Login"
+        android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +110,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/comfortaa"
         android:text="Email:"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,47 +123,38 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/comfortaa"
         android:text="Password:"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="346dp"
-        android:layout_height="22dp"
+        android:id="@+id/login_tv_here"
+        android:layout_width="63dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/comfortaa"
+        android:text=" here."
+        android:textColor="#0952DC"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/login_tv_here2"
+        app:layout_constraintStart_toEndOf="@+id/login_tv_here2"
+        app:layout_constraintTop_toTopOf="@+id/login_tv_here2" />
+
+    <TextView
+        android:id="@+id/login_tv_here2"
+        android:layout_width="71dp"
+        android:layout_height="33dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/comfortaa"
-        android:text="Create an account if you don't have one. "
+        android:text="Register"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <TextView
-        android:id="@+id/login_tv_here"
-        android:layout_width="80dp"
-        android:layout_height="31dp"
-        android:fontFamily="@font/comfortaa"
-        android:text=" here."
-        android:textColor="#669AFC"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/login_tv_here2"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/login_tv_here2"
-        android:layout_width="34dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/comfortaa"
-        android:text="Tap"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/login_btn"
