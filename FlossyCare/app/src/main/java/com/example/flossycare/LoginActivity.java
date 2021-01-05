@@ -2,9 +2,11 @@ package com.example.flossycare;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    protected EditText etEmailUsername, etPassword;
+
+    protected EditText etEmail, etPassword;
     protected Button btnLogin;
     protected TextView tvHere,tvForgotPass;
+    protected ProgressBar progressBar;
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -29,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etEmailUsername=(EditText) findViewById(R.id.login_et_email_username);
+        etEmail=(EditText) findViewById(R.id.login_et_email);
         etPassword=(EditText) findViewById(R.id.login_et_password);
         btnLogin= (Button) findViewById(R.id.login_btn);
         tvHere=(TextView) findViewById(R.id.login_tv_here);
@@ -59,21 +63,25 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,ForgotPassActivity.class));
 
             }
         });
 
+
+
     }
 
     private void checkCredentialsAndSuccess(){
-        String email=etEmailUsername.getText().toString().trim();
+        String email=etEmail.getText().toString().trim();
         String password=etPassword.getText().toString().trim();
 
-        if (email.isEmpty() || !email.contains("@")){
-            etEmailUsername.setError("Must Be Valid Email Address");
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            etEmail.setError("Must Not Be Empty & Please Provide Valid Email");
         }else if (password.isEmpty()){
             etPassword.setError("Must Not Be Empty");
         }else {
+
             mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

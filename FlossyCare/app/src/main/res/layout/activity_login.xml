@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <EditText
-            android:id="@+id/login_et_email_username"
+            android:id="@+id/login_et_email"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
