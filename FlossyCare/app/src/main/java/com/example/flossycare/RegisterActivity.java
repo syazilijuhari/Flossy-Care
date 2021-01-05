@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     protected EditText etEmail,etUsername,etPassword,etConfirmPassword;
     protected Button btnRegister;
+    protected TextView tvLogin;
 
    // List<User> users;
 
@@ -39,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         btnRegister= (Button) findViewById(R.id.register_btn);
 
+        tvLogin= (TextView) findViewById(R.id.register_tv_login);
+
       //  users=new ArrayList<>();
 
 
@@ -53,6 +57,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        tvLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
     }
 

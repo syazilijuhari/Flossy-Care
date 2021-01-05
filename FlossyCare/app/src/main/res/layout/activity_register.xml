@@ -8,8 +8,23 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    >
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/login_tv_here5"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Already have an account?"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/register_tv_login"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -119,6 +134,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
 
+            android:background="@android:color/transparent"
             android:fontFamily="@font/comfortaa"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
@@ -127,8 +143,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@android:color/transparent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -178,7 +194,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/comfortaa"
         android:text="Email:"
         android:textColor="#000000"
@@ -191,7 +207,7 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/comfortaa"
         android:text="Register"
         android:textColor="#000000"
@@ -213,8 +229,23 @@
         android:text="REGISTER"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_tv_here5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/register_tv_login"
+        android:layout_width="107dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Log in"
+        android:textColor="#0952DC"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/login_tv_here5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/login_tv_here5"
+        app:layout_constraintTop_toTopOf="@+id/login_tv_here5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
