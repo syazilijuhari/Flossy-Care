@@ -31,7 +31,7 @@ public class ForgotPassActivity extends AppCompatActivity {
         etEmail=(EditText) findViewById(R.id.login_et_email);
 
         btnReset=(Button) findViewById(R.id.btn_reset);
-        
+
 
         mFirebaseAuth=FirebaseAuth.getInstance();
 
